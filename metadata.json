@@ -2,10 +2,11 @@
   "name": "fvoges-datadog_agent_win",
   "version": "0.1.0",
   "author": "Federico Voges",
-  "summary": "",
+  "summary": "Manage DataDog Agent on Windows",
   "license": "Apache-2.0",
-  "source": "",
+  "source": "https://github.com/fvoges/puppet-datadog_agent_win",
   "dependencies": [
+    { "name": "puppet/archive", "version_requirement": ">= 4.1.0 <5.0.0" }
 
   ],
   "operatingsystem_support": [
