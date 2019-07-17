@@ -5,12 +5,25 @@
 # @example
 #   include datadog_agent_win::install
 class datadog_agent_win::install {
-  $archive_name = $::datadog_agent_win::archive_name
-  $download_url = $::datadog_agent_win::download_url
-  $version      = $::datadog_agent_win::version
-  $tmp_dir      = $::datadog_agent_win::tmp_dir
-  $api_key      = $::datadog_agent_win::api_key
-  $site         = $::datadog_agent_win::site
+  $api_key         = $::datadog_agent_win::api_key
+  $archive_name    = $::datadog_agent_win::archive_name
+  $download_url    = $::datadog_agent_win::download_url
+  $site            = $::datadog_agent_win::site
+  $tags            = $::datadog_agent_win::tags
+  $tmp_dir         = $::datadog_agent_win::tmp_dir
+  $version         = $::datadog_agent_win::version
+
+  # lint:ignore:quoted_booleans
+  $logs_enable    = $::datadog_agent_win::logs_enable ? {
+    true    => 'true',
+    default => 'false',
+  }
+
+  $process_enable = $::datadog_agent_win::process_enable ? {
+    true    => 'true',
+    default => 'false',
+  }
+  # lint:endignore
 
   archive { $archive_name:
     path    => "${tmp_dir}/${archive_name}",
@@ -23,8 +36,11 @@ class datadog_agent_win::install {
     source          => "${tmp_dir}/${archive_name}",
     install_options => [
       '/qn',
-      { 'APIKEY' => $api_key, },
-      { 'SITE'   => $site, },
+      { 'APIKEY'          => $api_key, },
+      { 'SITE'            => $site, },
+      { 'TAGS'            => $tags.join(','), },
+      { 'LOGS_ENABLED'    => $logs_enable, },
+      { 'PROCESS_ENABLED' => $process_enable, },
     ],
   }
 }
