@@ -21,11 +21,10 @@ class datadog_agent_win::install {
   package { 'datadog_agent':
     ensure          => 'present',
     source          => "${tmp_dir}/${archive_name}",
-    install_options => [{
-        'APIKEY' => $api_key,
-        'SITE'   => $site,
-      }
+    install_options => [
+      '/qn',
+      { 'APIKEY' => $api_key, },
+      { 'SITE'   => $site, },
     ],
-
   }
 }
