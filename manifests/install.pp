@@ -37,11 +37,11 @@ class datadog_agent_win::install {
     source          => "${tmp_dir}/${archive_name}",
     install_options => [
       { 'APIKEY'          => $api_key, },
-      { 'SITE'            => $site, },
-      { 'TAGS'            => $tags.join(','), },
+      { 'HOSTNAME'        => $hostname, },
       { 'LOGS_ENABLED'    => $logs_enable, },
       { 'PROCESS_ENABLED' => $process_enable, },
-      { 'HOSTNAME'        => $hostname, },
+      { 'SITE'            => $site, },
+      { 'TAGS'            => $tags.join(','), },
     ],
   }
 }
