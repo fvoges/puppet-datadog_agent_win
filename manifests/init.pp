@@ -12,6 +12,7 @@ class datadog_agent_win (
   Enum['datadoghq.com', 'datadoghq.eu'] $site            = 'datadoghq.com',
   String                                $hostname        = $trusted['certname'],
   String                                $version         = '6.12.2',
+  String                                $real_version    = "${version}.1",
   String                                $archive_name    = "ddagent-cli-${version}.msi",
   String                                $download_url    = "https://s3.amazonaws.com/ddagent-windows-stable/${archive_name}",
   String                                $tmp_dir         = 'C:\WINDOWS\TEMP',
