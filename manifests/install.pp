@@ -32,7 +32,7 @@ class datadog_agent_win::install {
     extract => false,
   }
 
-  package { 'datadog_agent':
+  package { 'Datadog Agent':
     ensure          => 'present',
     source          => "${tmp_dir}/${archive_name}",
     install_options => [
