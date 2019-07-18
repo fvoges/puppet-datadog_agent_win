@@ -8,6 +8,7 @@ class datadog_agent_win::install {
   $api_key         = $::datadog_agent_win::api_key
   $archive_name    = $::datadog_agent_win::archive_name
   $download_url    = $::datadog_agent_win::download_url
+  $hostname        = $::datadog_agent_win::hostname
   $site            = $::datadog_agent_win::site
   $tags            = $::datadog_agent_win::tags
   $tmp_dir         = $::datadog_agent_win::tmp_dir
@@ -40,6 +41,7 @@ class datadog_agent_win::install {
       { 'TAGS'            => $tags.join(','), },
       { 'LOGS_ENABLED'    => $logs_enable, },
       { 'PROCESS_ENABLED' => $process_enable, },
+      { 'HOSTNAME'        => $hostname, },
     ],
   }
 }
