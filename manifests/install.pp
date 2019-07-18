@@ -35,7 +35,6 @@ class datadog_agent_win::install {
     ensure          => 'present',
     source          => "${tmp_dir}/${archive_name}",
     install_options => [
-      '/qn',
       { 'APIKEY'          => $api_key, },
       { 'SITE'            => $site, },
       { 'TAGS'            => $tags.join(','), },
